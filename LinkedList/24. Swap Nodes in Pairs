@@ -1,0 +1,25 @@
+public ListNode swapPairs(ListNode head) {
+              if (head == null || head.next == null)
+            return head;
+        ListNode copy = head;
+        ListNode nextStart = head.next.next;
+        int temp;
+        ListNode temp1 = new ListNode(0);
+        while (nextStart != null && nextStart.next != null){
+            temp = copy.val;
+            copy = copy.next;
+            temp1.next = copy;
+            temp1 = new ListNode(temp);
+            temp1.next = nextStart;
+            copy.next = temp1;
+            copy = copy.next.next;
+            nextStart = nextStart.next.next;
+        }
+        temp = copy.val;
+        copy = copy.next;
+        temp1.next = copy;
+        temp1 = new ListNode(temp);
+        temp1.next = nextStart;
+        copy.next = temp1;
+        return head.next;
+    }
