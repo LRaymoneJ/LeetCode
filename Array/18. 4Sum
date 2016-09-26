@@ -1,0 +1,42 @@
+public List<List<Integer>> fourSum(int[] nums, int target) {
+        Arrays.sort(nums);
+        List<List<Integer>> result = new ArrayList<>();
+        if (nums.length <= 3)
+            return result;
+        int len = nums.length;
+        for (int i = 0; i < len - 3; i++) {
+            if (i > 0 && nums[i] == nums[i - 1])
+                continue;
+            for (int j = i + 1; j < len - 2; j++) {
+                if(j > i + 1 && nums[j] == nums[j - 1])
+                    continue;
+                int left = j + 1;
+                int right = len - 1;
+                while (left < right){
+                    int temp = nums[i] + nums[j] + nums[left] + nums[right] - target;
+                    if (temp < 0)
+                        left ++;
+                    else if (temp > 0)
+                        right --;
+                    else {
+                        List<Integer> subr = new ArrayList<>();
+                        subr.add(nums[i]);
+                        subr.add(nums[j]);
+                        subr.add(nums[left]);
+                        subr.add(nums[right]);
+                        result.add(subr);
+                        left ++;
+                        right --;
+                        while (nums[left] == nums[left - 1] && left < right){
+                            left ++;
+                        }
+                        while (nums[right] == nums[right + 1] && left < right){
+                            right --;
+                        }
+                    }
+
+                }
+            }
+        }
+        return result;
+    }
