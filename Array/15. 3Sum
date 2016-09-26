@@ -1,0 +1,39 @@
+List<List<Integer>> result = new ArrayList<>();
+        if (nums.length < 3)
+            return result;
+        Arrays.sort(nums);
+        int len = nums.length;
+        for (int i = 0; i < len - 2; i++) {
+            if(nums[i] > 0)
+            break;
+            if (i > 0) {
+                while (nums[i] == nums[i - 1] && i < len - 2) {
+                    i++;
+                }
+            }
+            int temp = 0 - nums[i];
+            int left = i + 1;
+            int right = len - 1;
+            while (left < right){
+                int target = nums[left] + nums[right];
+                if (target < temp)
+                    left ++;
+                else if (target > temp)
+                    right --;
+                else {
+                    List<Integer> subresult = new ArrayList<>();
+                    subresult.add(nums[i]);
+                    subresult.add(nums[left]);
+                    subresult.add(nums[right]);
+                    result.add(subresult);
+                    while(nums[left] == nums[left + 1] && left < right && left < len - 2)
+                        left ++;
+                    while (nums[right] == nums[right - 1] && left < right && right > 1)
+                        right --;
+                    left ++;
+                    right --;
+                }
+            }
+        }
+        return result;
+    } 
