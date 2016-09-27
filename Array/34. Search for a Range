@@ -1,0 +1,54 @@
+public int[] searchRange(int[] nums, int target) {
+      int[] result = {-1,-1};
+        if (nums.length < 1)
+            return result;
+            if (nums.length == 1){
+            if (nums[0] == target){
+                result[0] = 0;
+                result[1] = 0;
+                return result;
+            }
+        }
+        int left = 0;
+        int right = nums.length - 1;
+        while (left <= right){
+            int mid = (left + right) / 2;
+            if (nums[mid] > target){
+                right = mid - 1;
+            }
+            else if (nums[mid] < target){
+                left = mid + 1;
+            }
+            else {
+                int num1 = mid;
+                int num2 = mid;
+                while (left < num1){
+                    if (nums[left] == target)
+                        break;
+                    int lmid = (left + num1) / 2; 
+                    
+                    if (nums[lmid] < target)
+                        left = lmid + 1;
+                    else{
+                        num1 = lmid;
+                        left += 1;
+                    }
+                }
+                while (right > num2){
+                    if (nums[right] == target)
+                    break;
+                    int rmid = (right + num2) / 2;
+                    if (nums[rmid] > target)
+                        right = rmid - 1;
+                    else{
+                        num2 = rmid;
+                        right -= 1;
+                    }
+                }
+                result[0] = left;
+                result[1] = right;
+                break;
+            }
+        }
+        return result;  
+    }
