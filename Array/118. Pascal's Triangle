@@ -1,0 +1,22 @@
+public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (numRows == 0)
+            return result;
+        int i = 0;
+        while (i < numRows){
+            List<Integer> temp = new ArrayList<>();
+            temp.add(1);
+            int count = 1;
+            while (count < i){
+                int t = result.get(i - 1).get(count - 1) +
+                        result.get(i - 1).get(count);
+                temp.add(t);
+                count ++;
+            }
+            if (i > 0)
+                temp.add(1);
+            result.add(temp);
+            i ++;
+        }
+        return result;
+    }
