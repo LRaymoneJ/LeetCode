@@ -1,0 +1,25 @@
+public int[] plusOne(int[] digits) {
+        int i = digits.length - 1;
+        int temp = 1;
+        while (i >= 0){
+            if (digits[i] + temp > 9){
+                digits[i] = 0;
+                temp = 1;
+                i --;
+            }
+            else {
+                digits[i] = digits[i] + temp;
+                return digits;
+            }
+        }
+        if (temp == 0)
+            return digits;
+        else {
+            int[] result = new int[digits.length + 1];
+            result[0] = 1;
+            for (int j = 1; j < result.length; j++) {
+                result[j] = digits[j - 1];
+            }
+            return result;
+        }
+    }
