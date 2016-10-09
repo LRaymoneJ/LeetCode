@@ -1,0 +1,22 @@
+public boolean containsNearbyDuplicate(int[] nums, int k) {
+        Set<Integer> con = new HashSet<>();
+        int len = nums.length;
+        boolean flag = false;
+        for (int i = 0; i < Math.min(k,len); i++) {
+            if (con.contains(nums[i])) {
+                flag = true;
+                break;
+            } else
+                con.add(nums[i]);
+        }
+        for (int i = k; i < len; i++) {
+            if (con.contains(nums[i])) {
+                flag = true;
+                break;
+            } else {
+                con.add(nums[i]);
+                con.remove(nums[i - k]);
+            }
+        }
+        return flag;
+    }
