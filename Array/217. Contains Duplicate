@@ -1,0 +1,14 @@
+public boolean containsDuplicate(int[] nums) {
+        if (nums == null || nums.length == 1)
+            return false;
+        Arrays.sort(nums);
+        boolean flag = false;
+        int len = nums.length;
+        for (int i = 1; i < len; i++) {
+            if (nums[i] == nums[i - 1]){
+                flag = true;
+                break;
+            }
+        }
+        return flag;
+    }
