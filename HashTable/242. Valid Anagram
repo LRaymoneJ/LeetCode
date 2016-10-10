@@ -1,0 +1,40 @@
+方法一：
+public boolean isAnagram(String s, String t) {
+        char[] sarry = s.toCharArray();
+        char[] tarry = t.toCharArray();
+        Arrays.sort(sarry);
+        Arrays.sort(tarry);
+        return String.valueOf(sarry).equals(String.valueOf(tarry));
+    }
+    
+方法二：
+
+    public static boolean isAnagram(String s,String t) {
+        if (s.length() != t.length())
+            return false;
+        Map<Character,Integer> map = new HashMap<>();
+        int len = s.length();
+        for (int i = 0; i < len; i++) {
+            if (map.containsKey(s.charAt(i))){
+                int temp = map.get(s.charAt(i)) + 1;
+                map.remove(s.charAt(i));
+                map.put(s.charAt(i),temp);
+            }
+            else
+                map.put(s.charAt(i),1);
+        }
+        for (int i = 0; i < len; i++) {
+            if (map.containsKey(t.charAt(i))){
+                int temp = map.get(t.charAt(i)) - 1;
+                if (temp < 0)
+                    return false;
+                else {
+                    map.remove(t.charAt(i));
+                    map.put(t.charAt(i),temp);
+                }
+            }
+            else
+                return false;
+        }
+        return true;
+    }
