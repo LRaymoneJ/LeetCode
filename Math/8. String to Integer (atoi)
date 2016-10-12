@@ -10,7 +10,7 @@
             i ++;
             flag = 1;
         }
-        double result = 0;
+        double result = 0;   //注意要用double类型的，最大值比long大很多
         while (i < str.length() && str.charAt(i) >= '0' &&
                 str.charAt(i) <= '9') {
             result = result * 10 + (str.charAt(i) - '0');
