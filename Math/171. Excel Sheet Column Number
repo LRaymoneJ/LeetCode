@@ -1,0 +1,9 @@
+public int titleToNumber(String s) {
+        int result = 0;
+        int len = s.length() - 1;
+        for (int i = len; i >= 0; i--) {
+            int temp = (int)(s.charAt(i) - 'A') + 1;
+            result += temp * Math.pow(26,len - i);
+        }
+        return result;
+    }
