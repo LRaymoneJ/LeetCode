@@ -1,0 +1,35 @@
+    public int divide(int dividend, int divisor) {
+        long result = 0;
+        if (dividend == 0)
+            return (int)result;
+        int flag;
+        if ((dividend > 0 && divisor > 0) || (dividend < 0 && divisor < 0))
+            flag = 0;
+        else
+            flag = 1;
+        long temp1 = Math.abs((long)dividend);
+        long temp2 = Math.abs((long)divisor);
+        long temp = 1;
+        while (temp1 >= temp2) {
+            temp2 = temp2 << 1;
+            temp = temp << 1;
+        }
+        while (temp1 >= Math.abs((long)divisor)){
+            while (temp1 >= temp2){
+                temp1 -= temp2;
+                result += temp;
+            }
+            temp2 = temp2 >> 1;
+            temp = temp >> 1;
+        }
+        if (flag == 0){
+            if (result >= Integer.MAX_VALUE)
+                result = Integer.MAX_VALUE;
+            return (int)result;
+        }
+        else {
+            if (result <= Integer.MIN_VALUE)
+                result = Integer.MIN_VALUE;
+            return -(int)result;
+        }
+    }
