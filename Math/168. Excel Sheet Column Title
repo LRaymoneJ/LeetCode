@@ -1,0 +1,14 @@
+public String convertToTitle(int n) {
+        String result = "";
+        while (n > 0){
+            int temp = n % 26;
+            if (temp == 0){
+                result = 'Z' + result;
+                n = n / 26 - 1;
+                continue;
+            }
+            result = (char)(temp - 1 + (int)'A') + result;
+            n /= 26;
+        }
+        return result;
+    }
