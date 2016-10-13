@@ -1,0 +1,47 @@
+    public String addBinary(String a, String b) {
+        int len1 = a.length() - 1;
+        int len2 = b.length() - 1;
+        String result = "";
+        int of = 0;
+        int temp = 0;
+        while (len1 >= 0 && len2 >= 0){
+            temp = a.charAt(len1) + b.charAt(len2) - '0' -'0' + of;
+            if (temp > 1) {
+                of = 1;
+                result = (char)((temp - 2 + (int)'0')) + result;
+            }
+            else {
+                of = 0;
+                result = (char)((temp + (int)'0')) + result;
+            }
+            len1 --;
+            len2 --;
+        }
+        while (len1 >= 0) {
+            temp = a.charAt(len1) - '0' + of;
+            if (temp > 1) {
+                of = 1;
+                result = (char)((temp - 2 + (int)'0')) + result;
+            }
+            else {
+                of = 0;
+                result = (char)(temp + (int)'0') + result;
+            }
+            len1 --;
+        }
+        while (len2 >= 0) {
+            temp = b.charAt(len2) - '0' + of;
+            if (temp > 1) {
+                of = 1;
+                result = (char)((temp - 2 + (int)'0')) + result;
+            }
+            else {
+                of = 0;
+                result = (char)(temp + (int)'0') + result;
+            }
+            len2 --;
+        }
+        if (of > 0)
+            result = (char)(of + (int)'0') + result;
+        return result;
+    }
