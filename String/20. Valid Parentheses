@@ -1,0 +1,17 @@
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+        Map<Character,Character> map = new HashMap<>();
+        map.put(')','(');
+        map.put('}','{');
+        map.put(']','[');
+        for (int i = 0; i < s.length(); i++) {
+            if (map.containsKey(s.charAt(i)) && !stack.isEmpty() && map.get(s.charAt(i)) == stack.peek()) {
+                stack.pop();
+            }
+            else {
+                stack.add(s.charAt(i));
+            }
+        }
+        if (stack.empty()) return true;
+        else return false;
+    }
