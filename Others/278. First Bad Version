@@ -1,0 +1,14 @@
+public int firstBadVersion(int n) {
+        int front = 1, end = n;
+        while(front + 1 < end ) {
+            int mid = front + (end - front) / 2;    //一定要这样写，否则溢出
+            if (isBadVersion(mid))
+                end = mid;
+            else
+                front = mid;
+        }
+        if (isBadVersion(front))
+            return front;
+        else
+            return end;
+    }
