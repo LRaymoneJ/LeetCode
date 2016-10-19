@@ -1,0 +1,11 @@
+public int climbStairs(int n) {
+        if (n == 1 || n == 2)
+            return n;
+        int last = 2,lastlast = 1,curr = 3;           //越往后重复计算越多，需要用动态规划将F(n-1)和F(n-2)保存下来
+        for (int i = 3; i <= n; i++) {
+            curr = last + lastlast;
+            lastlast = last;
+            last = curr;
+        }
+        return curr;
+    }
