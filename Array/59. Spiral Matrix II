@@ -1,0 +1,29 @@
+public int[][] generateMatrix(int n) {
+        int[][] result = new int[n][n];
+        int x = 0,y = 0,len = n,high = n;
+        int count = 1;
+        while (len > 0 && high > 0) {
+            for (int i = 0; i < len; i++) {
+                result[x][y++] = count;
+                count ++;
+            }
+            y --;
+            for (int i = 1; i < high; i++) {
+                result[++x][y] = count;
+                count ++;
+            }
+            for (int i = 1; i < len; i++) {
+                result[x][--y] = count;
+                count ++;
+            }
+            for (int i = 1; i < high - 1; i++) {
+                result[--x][y] = count;
+                count ++;
+            }
+         
+            y += 1;
+            len -= 2;
+            high -= 2;
+        }
+        return result;
+    }
