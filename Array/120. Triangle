@@ -1,0 +1,21 @@
+public int minimumTotal(List<List<Integer>> triangle) {
+        int result = Integer.MAX_VALUE;
+        int n = triangle.size();
+        int[] com = new int[n+1];
+        com[0] = triangle.get(0).get(0);
+        com[1] = Integer.MAX_VALUE;
+        for (int i = 1; i < n; i++) {
+            int temp = com[0];
+            for (int j = 1; j <= i; j++) {
+                int temp1 = com[j];
+                com[j] = Math.min(temp,com[j]) + triangle.get(i).get(j);
+                temp = temp1;
+            }
+            com[0] += triangle.get(i).get(0);
+            com[i+1] = Integer.MAX_VALUE;
+        }
+        for (int i = 0; i < n; i++) {
+            result = Math.min(result,com[i]);
+        }
+        return result;
+    }
