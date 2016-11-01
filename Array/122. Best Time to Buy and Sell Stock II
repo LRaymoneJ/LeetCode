@@ -1,0 +1,15 @@
+public int maxProfit(int[] prices) {
+        int n = prices.length;
+        int i = 1;
+        int result = 0;
+        while (i < n) {
+            while (i < n && prices[i] <= prices[i - 1])
+                i++;
+            int temp = prices[i - 1];
+            while (i < n && prices[i] > prices[i - 1])
+                i++;
+            result += prices[i - 1] - temp;
+            i ++;
+        }
+        return result;
+    }
