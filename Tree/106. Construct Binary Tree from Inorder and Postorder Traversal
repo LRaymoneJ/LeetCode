@@ -1,0 +1,19 @@
+public TreeNode buildTree(int[] inorder, int[] postorder) {
+        int len = inorder.length-1;
+        return helper(inorder,0,len,postorder,0,len);
+    }
+    public static TreeNode helper(int[] inorder,int istart,int iend,int[] postorder,int pstart,int pend) {
+        if (istart > iend || pstart > pend) return null;
+        int rootval = postorder[pend];
+        int temp = 0;
+        for (int i = istart; i <= iend; i++) {
+            if (inorder[i] == rootval) {
+                temp = i;
+                break;
+            }
+        }
+        TreeNode root = new TreeNode(rootval);
+        root.left = helper(inorder, istart, temp-1, postorder, pstart, temp-1-istart+pstart);
+        root.right = helper(inorder, temp+1, iend, postorder, pstart+temp-istart, pend-1);
+        return root;
+    }
