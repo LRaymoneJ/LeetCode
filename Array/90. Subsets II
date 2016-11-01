@@ -1,0 +1,27 @@
+public List<List<Integer>> subsetsWithDup(int[] nums) {
+        Set<List<Integer>> set = new HashSet<>();
+        List<List<Integer>> result = new LinkedList<>();
+        List<Integer> temp = new LinkedList<>();
+        set.add(temp);
+        if (nums == null) return result;
+        Arrays.sort(nums);
+        for (int i = 1; i <= nums.length; i++) {
+            temp.clear();
+            dfs(set,temp,nums,0,i);
+        }
+        Iterator<List<Integer>> it = set.iterator();
+        while (it.hasNext())
+            result.add(it.next());
+        return result;
+    }
+    public static void dfs(Set<List<Integer>> result,List<Integer> temp,int[] nums,int start,int number) {
+        if (number == temp.size()) {
+            result.add(new ArrayList<>(temp));
+            return;
+        }
+        for (int i = start; i < nums.length; i++) {
+            temp.add(nums[i]);
+            dfs(result, temp, nums, i + 1, number);
+            temp.remove(temp.size() - 1);
+        }
+    }
