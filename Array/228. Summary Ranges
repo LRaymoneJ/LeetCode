@@ -1,0 +1,25 @@
+public List<String> summaryRanges(int[] nums) {
+        List<String> result = new LinkedList<>();
+        int n = nums.length;
+        if (n == 0) return result;
+        int i = 0;
+        while (i < n) {
+            String str = new String("");
+            int left = nums[i];
+            int right = left;
+            while (i < n-1 && nums[i] + 1 == nums[i+1]) {
+                right ++;
+                i ++;
+            }
+            if (right > left) {
+                str = str + Integer.toString(left) + "->" + Integer.toString(right);
+                result.add(str);
+            }
+            else {
+                str = str + Integer.toString(left);
+                result.add(str);
+            }
+            i ++;
+        }
+        return result;
+    }
