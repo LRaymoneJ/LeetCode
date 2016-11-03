@@ -1,0 +1,49 @@
+方法一：
+
+public int[] productExceptSelf(int[] nums) {
+        int[] result = new int[nums.length];
+        int all = 1;
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                count ++;
+                continue;
+            }
+            else all *= nums[i]; 
+        }
+        if (count == 0) {
+            for (int i = 0; i < nums.length; i++) {
+                result[i] = all / nums[i];
+            }
+        }
+        else if (count > 1) {
+            for (int i = 0; i < nums.length; i++) {
+                result[i] = 0;
+            }
+        }
+        else {
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i] == 0) result[i] = all;
+                else result[i] = 0;
+            }
+        }
+        return result;
+    }
+    
+    
+方法二：
+
+public int[] productExceptSelf(int[] nums) {
+        int[] res = new int[nums.length];  
+        res[res.length-1] = 1;  
+        for(int i=nums.length-2; i>=0; i--) {  
+            res[i] = res[i+1] * nums[i+1];  
+        }  
+          
+        int left = 1;  
+        for(int i=0; i<nums.length; i++) {  
+            res[i] *= left;  
+            left *= nums[i];  
+        }  
+        return res;  
+    }
