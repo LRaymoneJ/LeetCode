@@ -1,0 +1,64 @@
+方法一：
+
+public static List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>>result = new ArrayList<>();
+        if(strs == null || strs.length == 0)
+            return result;
+        //将字典序的字符串作为key，将其同位词组转到一个List中存储到HashMap中
+        HashMap<String,List<String>>map = new HashMap<>();
+
+        for(int i = 0; i < strs.length; i++) {
+            char[] chars = strs[i].toCharArray();
+            // 字典序排序
+            Arrays.sort(chars);
+            String temp = new String(chars);
+
+            if (!map.containsKey(temp)) {
+                List<String> result_list = new ArrayList<>();
+                result_list.add(strs[i]);
+                map.put(temp, result_list);
+            } else {
+                map.get(temp).add(strs[i]);
+            }
+        }
+
+        //遍历map，对ArrayList进行字典序排序
+        Iterator<Map.Entry<String,List<String>>>iterator = map.entrySet().iterator();
+        while(iterator.hasNext()) {
+            Map.Entry<String,List<String>> entry = iterator.next();
+            List<String> temp_list = entry.getValue();
+            //Collections.sort(temp_list);
+            result.add(temp_list);
+        }
+        return result;
+    }
+    
+方法二(超时了)：
+
+public List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>> result = new ArrayList<>();
+        for (int i = 0; i < strs.length; i++) {
+            String str = strs[i];
+            helper(str,result);
+        }
+        return result;
+    }
+    public static void helper(String str,List<List<String>> result) {
+        char[] temp = str.toCharArray();
+        Arrays.sort(temp);
+        int count = 0;
+        for (int j = 0; j < result.size(); j++) {
+            char[] com = result.get(j).get(0).toCharArray();
+            Arrays.sort(com);
+            if (String.valueOf(temp).equals(String.valueOf(com))) {
+                result.get(j).add(str);
+                break;
+            }
+            count ++;
+        }
+        if (count == result.size()) {
+            List<String> add = new ArrayList<>();
+            add.add(str);
+            result.add(add);
+        }
+    }
