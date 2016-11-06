@@ -1,0 +1,20 @@
+public List<String> findRepeatedDnaSequences(String s) {
+        List<String> result = new ArrayList<>();
+        Map<String,Integer> map = new HashMap<>();
+        int len = s.length();
+        if (len <= 10) return result;
+        int i = 9;
+        while (i < len) {
+            String temp = new String(s.substring(i-9,i+1));
+            if (map.containsKey(temp)) {
+                map.put(temp,map.get(temp)+1);
+            }
+            else map.put(temp,1);
+            i ++;
+        }
+        for (String key : map.keySet()) {
+            if (map.get(key) > 1) 
+                result.add(key);
+        }
+        return result;
+    }
