@@ -1,0 +1,21 @@
+public int[] intersect(int[] nums1, int[] nums2) {
+        Map<Integer,Integer> map = new HashMap<>();
+        List<Integer> list = new ArrayList<>();
+        for (int i:nums1) {
+            if (map.containsKey(i)) 
+                map.put(i,map.get(i)+1);
+            else map.put(i,1);
+        }
+        for (int key:nums2) {
+            if (map.containsKey(key) && map.get(key) > 0) {
+                map.put(key,map.get(key)-1);
+                list.add(key);
+            }
+        }
+        int[] result = new int[list.size()];
+        int i = 0;
+        for (int value:list) {
+            result[i++] = value;
+        }
+        return result;
+    }
