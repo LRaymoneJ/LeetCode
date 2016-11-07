@@ -1,0 +1,27 @@
+public String frequencySort(String s) {
+        Map<Character,Integer> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            if (map.containsKey(s.charAt(i)))
+                map.put(s.charAt(i),map.get(s.charAt(i))+1);
+            else map.put(s.charAt(i),1);
+        }
+        List<Map.Entry> list = new ArrayList<>(map.entrySet());
+        Collections.sort(list,new Mycomparator());
+        Iterator<Map.Entry> iter = list.iterator();
+        StringBuilder result = new StringBuilder();
+        while (iter.hasNext()) {
+            Map.Entry entry = iter.next();
+            for (int i = 0; i < (int)entry.getValue(); i++) {
+                result.append(entry.getKey());
+            }
+        }
+        return result.toString();
+    }
+    class Mycomparator implements Comparator {
+        @Override
+        public int compare(Object o1, Object o2) {
+            Map.Entry e1 = (Map.Entry) o1;
+            Map.Entry e2 = (Map.Entry) o2;
+            return (int)e2.getValue() - (int)e1.getValue();
+        }
+    }
