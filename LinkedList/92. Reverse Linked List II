@@ -1,0 +1,26 @@
+public ListNode reverseBetween(ListNode head, int m, int n) {
+        if (m == n) return head;
+        ListNode result = new ListNode(0);
+        result.next = head;
+        ListNode temp = result;
+        int count = 1;
+        while (count < m) {
+            temp = temp.next;
+            count ++;
+        }
+        ListNode left = new ListNode(temp.next.val);
+        ListNode right = left;
+        temp.next = temp.next.next;
+        count ++;
+        while (count <= n) {
+            ListNode temp1 = new ListNode(temp.next.val);
+            temp1.next = left;
+            left = temp1;
+            temp.next = temp.next.next;
+            count ++;
+        }
+        ListNode temp2 = temp.next;
+        temp.next = left;
+        right.next = temp2;
+        return result.next;
+    }
