@@ -1,0 +1,15 @@
+public int maxRotateFunction(int[] A) {
+        int result = Integer.MIN_VALUE;
+        if (A == null || A.length == 0) return 0;
+        int len = A.length;
+        for (int i = 0; i < len; i++) {
+            int temp = 0;
+            for (int j = 0; j < len; j++) {
+                if (j-i<0)
+                    temp += j*A[j-i+len];
+                else temp += j*A[j-i];
+            }
+            result = Math.max(result,temp);
+        }
+        return result;
+    }
