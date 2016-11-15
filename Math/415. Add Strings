@@ -1,0 +1,24 @@
+public String addStrings(String num1, String num2) {
+        char[] lo = num1.length() > num2.length() ? num1.toCharArray() : num2.toCharArray();
+        char[] sh = num1.length() <= num2.length() ? num1.toCharArray() : num2.toCharArray();
+        int i = 1;
+        int carry = 0;
+        int l1 = lo.length;
+        int l2 = sh.length;
+        while (i <= l2) {
+            int temp = lo[l1 - i] + sh[l2 - i] + carry - '0' - '0';
+            carry = temp / 10;
+            lo[l1 - i] = (char) ((temp - 0) % 10 + 48);
+            i++;
+        }
+        while (i <= l1) {
+            int temp = lo[l1 - i] + carry - '0';
+            lo[l1 - i] = (char) ((temp - 0) % 10 + 48);
+            carry = temp / 10;
+            if (carry == 0) break;
+            i++;
+        }
+        String result = new String(lo);
+        if (carry == 1) return Integer.toString(carry - 0) + result;
+        else return result;
+    }
