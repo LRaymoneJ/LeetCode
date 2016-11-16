@@ -1,0 +1,9 @@
+public int arrangeCoins(int n) {
+        if (n == 0) return 0;
+        int count = 0;
+        while (n >= count) {
+            n -= count;
+            count ++;
+        }
+        return --count;
+    }
