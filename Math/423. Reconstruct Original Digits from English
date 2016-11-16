@@ -1,0 +1,43 @@
+public String originalDigits(String s) {
+        Map<Character,Integer> map = new HashMap<>();
+        char[] arr = s.toCharArray();
+        int len = arr.length;
+        for (int i = 0; i < len; i++) {
+            if (map.containsKey(arr[i])) {
+                map.put(arr[i],map.get(arr[i])+1);
+                continue;
+            }
+            else map.put(arr[i],1);
+        }
+        Map<Integer,Integer> mapnum = new HashMap<>();
+        mapnum.put(0,0);
+        mapnum.put(1,0);
+        mapnum.put(2,0);
+        mapnum.put(3,0);
+        mapnum.put(4,0);
+        mapnum.put(5,0);
+        mapnum.put(6,0);
+        mapnum.put(7,0);
+        mapnum.put(8,0);
+        mapnum.put(9,0);
+        if (map.containsKey('w')) mapnum.put(2,map.get('w'));
+        if (map.containsKey('x')) mapnum.put(6,map.get('x'));
+        if (map.containsKey('g')) mapnum.put(8,map.get('g'));
+        if (map.containsKey('z')) mapnum.put(0,map.get('z'));
+        if (map.containsKey('h')) mapnum.put(3,map.get('h')-mapnum.get(8));
+        if (map.containsKey('s')) mapnum.put(7,map.get('s')-mapnum.get(6));
+        if (map.containsKey('v')) mapnum.put(5,map.get('v')-mapnum.get(7));
+        if (map.containsKey('f')) mapnum.put(4,map.get('f')-mapnum.get(5));
+        if (map.containsKey('o')) mapnum.put(1,map.get('o')-mapnum.get(0)-mapnum.get(2)-mapnum.get(4));
+        if (map.containsKey('i')) mapnum.put(9,map.get('i')-mapnum.get(8)-mapnum.get(6)-mapnum.get(5));
+        String result = "";
+        for (int i = 0; i <= 9; i++) {
+            int sum = mapnum.get(i);
+            int temp = 0;
+            while (temp < sum) {
+                result = result + i;
+                temp ++;
+            }
+        }
+        return result;
+    }
