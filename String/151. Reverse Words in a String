@@ -1,0 +1,10 @@
+public String reverseWords(String s) {
+        if (s == null || s.length() == 0) return "";
+        String[] arr = s.split(" ");
+        StringBuilder result = new StringBuilder();
+        for (int i = arr.length-1; i >= 0; i--) {
+            if (!arr[i].equals("")) 
+                result.append(arr[i]).append(" ");
+        }
+        return result.length() == 0 ? "" : result.substring(0,result.length()-1);
+    }
