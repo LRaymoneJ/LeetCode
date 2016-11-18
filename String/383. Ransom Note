@@ -1,0 +1,20 @@
+public boolean canConstruct(String ransomNote, String magazine) {
+        if (ransomNote.length() > magazine.length()) return false;
+        Map<Character,Integer> map = new HashMap<>();
+        int i = 0;
+        while (i < magazine.length()) {
+            if (map.containsKey(magazine.charAt(i)))
+                map.put(magazine.charAt(i),map.get(magazine.charAt(i))+1);
+            else
+                map.put(magazine.charAt(i),1);
+            i ++;
+        }
+        i = 0;
+        while (i < ransomNote.length()) {
+            if (!map.containsKey(ransomNote.charAt(i))) return false;
+            else if (map.get(ransomNote.charAt(i)) == 0) return false;
+            else map.put(ransomNote.charAt(i),map.get(ransomNote.charAt(i))-1);
+            i ++;
+        }
+        return true;
+    }
