@@ -1,0 +1,18 @@
+public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> result = new LinkedList<>();
+        if (root == null) return result;
+        List<TreeNode> list = new LinkedList<>();
+        list.add(root);
+        findRight(list,result);
+        return result;
+    }
+    public void findRight(List<TreeNode> list,List<Integer> result) {
+        if (list.isEmpty()) return;
+        result.add(list.get(list.size()-1).val);
+        List<TreeNode> nextfl = new LinkedList<>();
+        for (TreeNode temp:list) {
+            if (temp.left != null) nextfl.add(temp.left);
+            if (temp.right != null) nextfl.add(temp.right);
+        }
+        findRight(nextfl,result);
+    }
