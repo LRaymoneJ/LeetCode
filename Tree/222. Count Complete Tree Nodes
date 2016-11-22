@@ -1,0 +1,17 @@
+public int countNodes(TreeNode root) {
+        if(root == null)
+            return 0;
+        int left = countLevel(root.left);
+        int right = countLevel(root.right);
+        if(left == right) return (1<<left) + countNodes(root.right);
+        else return (1<<right) + countNodes(root.left);
+    }
+    public static int countLevel(TreeNode root) {
+        if(root == null) return 0;
+        int count = 0;
+        while(root != null) {
+            count++;
+            root = root.left;
+        }
+        return count;
+    }
