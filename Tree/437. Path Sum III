@@ -1,0 +1,14 @@
+    public int result[] = new int[1];
+    public int pathSum(TreeNode root,int sum) {
+        if (root == null) return 0;
+        findpath(root,result,sum);
+        if (root.left != null) pathSum(root.left,sum);
+        if (root.right != null) pathSum(root.right,sum);
+        return result[0];
+    }
+    public void findpath(TreeNode root,int[] result,int n) {
+        if (root.val == n) result[0] ++;
+        if (root.left == null && root.right == null) return;
+        if (root.left != null) findpath(root.left,result,n-root.val);
+        if (root.right != null) findpath(root.right,result,n-root.val);
+    }
